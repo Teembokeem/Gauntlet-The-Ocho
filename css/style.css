@@ -1,0 +1,88 @@
+
+
+#battle_board {
+  height:100%;
+  width: 100%;
+  display: block;
+}
+
+#enemy_side {
+  border: 3px solid blue;
+  float: left;
+  height: 300px;
+  width: 1400px;
+  top:0;
+  position: absolute;
+  display: block;
+
+}
+
+#enemy_info {
+  float: left;
+  height: 300px;
+  width: 500px;
+  border: 3px solid red;
+  display: inline-block;
+}
+
+#enemy_img {
+  float: right;
+  position: relative;
+  display: inline-block;
+  border: 2px solid black;
+}
+
+
+#player_side {
+  border: 3px solid blue;
+  float: left;
+  height: 300px;
+  width: 1400px;
+  bottom:100px;
+  position: absolute;
+  display: block;
+}
+
+
+#player_img {
+  float: left;
+  position: relative;
+  display: inline-block;
+  border: 2px solid black;
+  padding-left: 30px;
+}
+
+#player_info {
+  height: 300px;
+  width: 500px;
+  display: inline-block;
+  border: 3px solid red;
+  float: right;
+}
+
+#menu_bar {
+  height: 100px;
+  width: 1400px;
+  border: 3px solid green;
+  bottom: 0px;
+  display: block;
+  position: absolute;
+}
+
+.lists {
+  height: 100px;
+  width: 200px;
+  border: 2px solid red;
+  float: left;
+  display: inline;
+}
+#pokemon_list {
+}
+
+.yourface {
+  height: 300px;
+  width: 300px;
+}
+
+
+
