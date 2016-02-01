@@ -123,13 +123,17 @@ console.log("POKEBALLS READY");
       activeEnemyAvatar.battle(activeAvatar);
 
       updateUsableAvatar();
-      if (activeAvatar.currenthealth <= 0 && usableAvatarList != []) {   //THIS LOGIC NEEDS TO HASH OUT.
+      if (usableAvatarList[0] == undefined) {
+        console.log("Your fam blacked out.");
+        console.log('leaving battle....');
+        console.log(".........." + activeEnemyAvatar.oneLiner);   //END BATTLE PUNISHMENTS, LOADING SCREEN, WORLD SCREEN/STORY LOADING FOR WAKING UP FROM DYING.);
+      } else if (activeAvatar.currenthealth <= 0) {
         var switchPrompt = prompt("Do you want to switch out?");  // NEEDS TO TURN TO TEXT ASKING SWITCH. AND YES OR NO KEYUP OR DOWN + ENTER.
         if (switchPrompt = "yes") {
-          switchOut();
+          switchList();
         } else {
-          console.log('leaving battle....');
-          console.log(activeEnemyAvatar.oneLiner);               //END BATTLE PUNISHMENTS, LOADING SCREEN, WORLD SCREEN/STORY LOADING FOR WAKING UP FROM DYING.);
+        console.log("You gave up.");
+        console.log("....." + activeEnemyAvatar.oneLiner);
         }
       }
     };
@@ -166,18 +170,15 @@ console.log("POKEBALLS READY");
     //h. keith one-liner
     //i. enemy turn fnc (uses while hp>0)
 
-  var switchOut = function() {                                                        //NEEDS TO TURN TO CLICK EVENT ON Avatar UL LIST.
-      for (i=0; i <usableAvatarList.length; i++) {                                         //THIS NEEDS TO CHANGE TO UNSELECTABLE PANEL FOR FAINTED Avatar.
-        var selectSwitchAvatar = prompt("Switch to " + usableAvatarList[i].name + "?");  //NEEDS TEXT ASKING FOR SWITCH CONFIRM TO VIABLE Avatar.
-        if (selectSwitchAvatar = "yes") {
-          activeAvatar = usableAvatarList[i];
-          console.log('Go!' + activeAvatar.name + "!");
-          break;
-        } else {
-          console.log('leaving battle....');
-          console.log(activeEnemyAvatar.oneLiner);
-        }
+  var switchList = function() {                                                             //NEEDS TO TURN TO CLICK EVENT ON Avatar UL LIST.
+      console.log(" Your Active Avatar is: " + activeAvatar.name);
+      console.log("Currently in slots:")
+      for (i=0; i<usableAvatarList.length; i++) {
+        console.log(usableAvatarList[i].name);
+        console.log("Current Health: " + usableAvatarList[i].currenthealth);
       }
+      activeAvatar = usableAvatarList[0];
+      console.log("Switched out to " + activeAvatar.name)
   };
 
 
@@ -195,8 +196,12 @@ console.log("POKEBALLS READY");
 
     //II.
 
+var $worldMap = $('#world_map');
+var $battleBoard = $('#battle_board');
 
+var subRenderChangeScreen = function() {
 
+};
 
 
 

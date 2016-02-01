@@ -1,9 +1,16 @@
-
+#world_map {
+  height: 100%;
+  width: 100%;
+  display: block;
+  background: url("http://gearnuke.com/wp-content/uploads/2013/10/pokemon_sapphire.jpg");
+  z-index: 1;
+}
 
 #battle_board {
   height:100%;
   width: 100%;
   display: block;
+  z-index: 3;
 }
 
 #enemy_side {
