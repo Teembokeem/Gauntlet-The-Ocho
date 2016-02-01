@@ -199,8 +199,16 @@ console.log("POKEBALLS READY");
 var $worldMap = $('#world_map');
 var $battleBoard = $('#battle_board');
 
-var subRenderChangeScreen = function() {
+var subRenderBattleScreen = function() {
+  $worldMap.css({"z-index": "1", "visibility": "hidden"});
+  setTimeout(function() {
+  $battleBoard.css({"z-index": "3", "visibility": "visible"});
+}, 2000);
+};
 
+var subRenderWorldScreen = function() {
+  $worldMap.css({"z-index": "3", "visibility": "visible"});
+  $battleBoard.css({"z-index": "1", "visibility": "hidden"});
 };
 
 
