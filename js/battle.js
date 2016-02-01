@@ -16,36 +16,42 @@ console.log("POKEBALLS READY");
       }
     };
 
-    var enemyAvatar = function(name, health, attackName1, attackName2) {
+    var enemyAvatar = function(name, health, attackName1, attackName2, oneLiner) {
       this.name = name;
       this.maxhealth = health;
       this.currenthealth = health;
       this.attackName1 = attackName1;
       this.attackName2 = attackName2;
+      this.oneLiner = oneLiner;
       this.battle = function(enemy) {
         if ((Math.floor(Math.random() * (2 - 0)) + 0) === 0) {
-          console.log(this.name + " attacks with " + this.attackName1 + ", which did " + enemy.currenthealth + " damage.");
+          console.log(this.name + " attacks with " + this.attackName1 + ".");
           console.log(enemy.name + " was dealt " + enemy.currenthealth + " damage");
           enemy.currenthealth -= enemy.currenthealth;
           console.log(enemy.name + " has " + enemy.currenthealth + " health left.");
         } else {
-          console.log(this.name + " attacks with " + this.attackName2 + ", which did " + (enemy.currenthealth -1) + " damage.");
-          console.log(enemy.name + " was dealt " + (enemy.currenthealth -1) + " damage.");
-          enemy.currenthealth -= enemy.currenthealth -1;
-          console.log(enemy.name + " has " + enemy.currenthealth + " health left.");
+          console.log(this.name + " attacks with " + this.attackName2 + ".");
+          if (enemy.currenthealth === 1) {
+            console.log("The attack failed!");
+          } else {
+           console.log(enemy.name + " was dealt " + (enemy.currenthealth -1) + " damage.");
+           enemy.currenthealth -= enemy.currenthealth -1;
+           console.log(enemy.name + " has " + enemy.currenthealth + " health left.");
+          }
         }
       }
-    };
+    }
 
     var pikaFreakingChu = new Avatar("pika FRICKIN CHU", 1000, "Thunder", 100);
 
     var dragonite = new Avatar("big fucking dragon", 10000, "Fus Roh Dah", 4000);
 
-    var onePunchPhil = new enemyAvatar("One Punch Phil", 100000, "one-punch", "mercy-punch");
+    var onePunchPhil = new enemyAvatar("One Punch Phil", 100000, "one-punch", "mercy-punch", "huehue...weakling....");
 
     var pokemonList = [pikaFreakingChu, dragonite];
     var activeAvatar = pokemonList[0]; //needs to grab whoever.
     var activeEnemyAvatar = onePunchPhil;
+    var usablePokemonList = pokemonList;
 
      //needs to grab whoever.
 
@@ -79,6 +85,7 @@ var battle = function() {
     console.log("A wild " + activeEnemyAvatar.name + " has appeared!");
     console.log(pokemonList[0].name + " is up!");
 };
+
 //1. tick-based, animations running, waiting for user response
 
 //Master fnc: while player hp > 1, and enemy hp >1
@@ -88,7 +95,7 @@ var battle = function() {
 
 //MASTER attack fnc (click/pressing enter): NEEDS FUNCTION
 
-  var attack = function() {       // this should have event listener on attack button, after choosing specific attack.
+  var attack = function() {       // NEEDS EVENT LISTENER ON ATTACK NAME'S CLICK
     //a. damage calculation fnc
     activeAvatar.battle(activeEnemyAvatar);
     //b. "declares attack in text"
@@ -104,18 +111,29 @@ var battle = function() {
       enemyAttack(activeEnemyAvatar, activeAvatar);
     } else {
       //endbattle fnc.
-      console.log('you win!');
+      console.log('you win!');                        //END BATTLE REWARDS, LOADING SCREEN, WORLD SCREEN
     }
   };
+var updateUsablePokemon = function() {                    //NEEDS TO RUN WITH COFFEE POKEMON CENTER.
+  for (i=0; i<usablePokemonList.length; i++) {
+    if (usablePokemonList[i].currenthealth <= 0) {
+      usablePokemonList.splice(usablePokemonList[i], 1);
+    }
+  }
+};
 
-  var enemyAttack = function() {                      //LIKE THIS BECAUSE OTHERWISE RUNS LOOP.
+  var enemyAttack = function() {                      //LEAVE IT LIKE THIS BECAUSE OTHERWISE RUNS LOOP.
     activeEnemyAvatar.battle(activeAvatar);
 
-    if(activeAvatar.currenthealth >0) {
-      attack(activeAvatar, activeEnemyAvatar);
-    } else {
-      // endbattle fnc
-      console.log('You Lost');
+    updateUsablePokemon();
+    if (activeAvatar.currenthealth <= 0 && usablePokemonList != []) {   //THIS LOGIC NEEDS TO HASH OUT.
+      var switchPrompt = prompt("Do you want to switch out?");  // NEEDS TO TURN TO TEXT ASKING SWITCH. AND YES OR NO KEYUP OR DOWN + ENTER.
+      if (switchPrompt = "yes") {
+        switchOut();
+      } else {
+        console.log('leaving battle....');
+        console.log(activeEnemyAvatar.oneLiner);               //END BATTLE PUNISHMENTS, LOADING SCREEN, WORLD SCREEN/STORY LOADING FOR WAKING UP FROM DYING.);
+      }
     }
   };
 
@@ -167,7 +185,19 @@ var battle = function() {
     //h. keith one-liner
     //i. enemy turn fnc (uses while hp>0)
 
-
+  var switchOut = function() {                                                        //NEEDS TO TURN TO CLICK EVENT ON POKEMON UL LIST.
+      for (i=0; i <usablePokemonList.length; i++) {                                         //THIS NEEDS TO CHANGE TO UNSELECTABLE PANEL FOR FAINTED POKEMON.
+        var selectSwitchAvatar = prompt("Switch to " + usablePokemonList[i].name + "?");  //NEEDS TEXT ASKING FOR SWITCH CONFIRM TO VIABLE AVATAR.
+        if (selectSwitchAvatar = "yes") {
+          activeAvatar = usablePokemonList[i];
+          console.log('Go!' + activeAvatar.name + "!");
+          break;
+        } else {
+          console.log('leaving battle....');
+          console.log(activeEnemyAvatar.oneLiner);
+        }
+      }
+  };
 
 
 //2. Enemy turn fnc:
