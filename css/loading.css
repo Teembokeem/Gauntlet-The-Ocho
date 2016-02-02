@@ -1,0 +1,10 @@
+#loading_Screen {
+  height:80%;
+  width: 60%;
+  position: absolute;
+  top: 18%;
+  left: 20%;
+  background: black;
+  background-position: 0px -100px;
+  z-index:1;
+}

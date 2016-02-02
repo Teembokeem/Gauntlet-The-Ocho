@@ -4,51 +4,52 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/battle.css">
+  <link rel="stylesheet" href="./css/loading.css">
+  <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
   <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
 </head>
 <body>
-  <!-- <div id="world_map"> -->
+  <div id="world_map">
     <canvas id="canvas"></canvas>
-  <!-- </div> -->
+    <div class="lists" id="menu_bar">
+      <div class="lists" id="pokemon_list">
+        <div class="activeAvatar"></div>
+        <div class="secondAvatar"></div>
+      </div>
+    </div>
+  </div>
   <div id="battle_board">
-    <div id="enemy_side">
+      <div id="attack_text_box">
+        <div class="submenu" id="fight"><span id="menutext">FIGHT</span></div>
+        <div class="attacks" id="attack1"></div>
+        <div class="attacks" id="attack2"></div>
+        <div class="attacks" id="attack3"></div>
+        <div class="attacks" id="attack4"></div>
+        <div class="submenu" id="item"><span id="menutext">ITEM</span></div>
+        <div class="submenu" id="fam"><span id="menutext">FAM</span></div>
+        <div class="submenu" id="bone_Out"><span id="menutext">BONEOUT</span></div>
+        <div id="battle_Text"></div>
+      </div>
       <div id="enemy_info">
-      <img id="trainer_sprite" src="./assets/WGfwL.gif">
-        <div id="name">
-        </div>
-        <div id="level">
-        </div>
-        <img id="health_container">
-        <div id="health">
-        </div>
+        <div id="name"></div>
+        <div id="level"></div>
+        <img id="enemy_health_bar" src="./assets/hpbar.png">
       </div>
-      <img class="yourface" id="enemy_img" src="./assets/oat.png">
-    </div>
-    <div id="player_side">
-      <img class="yourface" id="player_img" src="./assets/kid.png">
+      <div>
+        <img class="yourface" id="enemy_img" src="./assets/trainer1.png">
+      </div>
+      <div>
+        <img class="yourface" id="player_img" src="./assets/trainer2.png">
+      </div>
       <div id="player_info">
-      <img id="trainer_sprite" src="./assets/WGfwL.gif">
-        <div id="name">
-        </div>
-        <div id="level">
-        </div>
-        <img id="health_container">
-        <div id="health">
-        </div>
+        <div id="name"></div>
+        <div id="level"></div>
+        <img id="player_health_bar" src="./assets/hpbar.png">
       </div>
-    </div>
   </div>
-  <div class="lists" id="menu_bar">
-    <div class="lists" id="pokemon_list">
-      <div class="activeAvatar"></div>
-      <div class="secondAvatar"></div>
-    </div>
-    <div class="lists" id="attack_list">
-    </div>
-    <div class="lists" id ="items_list">
-    </div>
-  </div>
+  <div id="loading_Screen"></div>
     <script src="./js/battle.js"></script>
     <script src="./js/map.js"></script>
 </body>
