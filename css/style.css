@@ -5,9 +5,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 3;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-#world_map {
+/*#world_map {
 
   height: 70%;
   width: 60%;
@@ -20,6 +22,18 @@ body {
   visibility: visible;
   top: 18%;
   left: 20%;
+}*/
+
+#canvas {
+  height: 400px;
+  width: 600px;
+  z-index:3;
+  border: 3px solid black;
+  position: fixed;
+  top:20%;
+  left: 25%;
+
+
 }
 
 #battle_board {
