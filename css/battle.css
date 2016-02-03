@@ -13,7 +13,7 @@ body {
   height: 80%;
   width: 60%;
   border: 4px solid black;
-  background: url("../assets/background.jpg");
+  background: url("http://vignette3.wikia.nocookie.net/pokemon/images/b/b4/Floaroma_Town_DP.png/revision/latest?cb=20110213021448");
   position: absolute;
   background-size: cover;
   background-repeat: no-repeat;
@@ -76,6 +76,16 @@ body {
   background: url("../assets/enemyhpbox.png");
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: 18px;
+  font-family: 'Inconsolata';
+}
+
+#enemy_name_level {
+  position: absolute;
+  top: 45px;
+  left: 70px;
+  height: 30px;
+  width: 280px;
 }
 
 #enemy_health_bar {
@@ -84,8 +94,16 @@ body {
   position: absolute;
   top:70px;
   left:100px;
-  border: 3px solid black;
 }
+
+#enemy_health_points {
+  height: 10px;
+  width: 162px;
+  position: absolute;
+  top:87px;
+  left:173px;
+/*  border: 3px solid black;
+*/}
 
 #enemy_img {
   float: right;
@@ -108,16 +126,34 @@ body {
   background: url("../assets/playerhpbox.png");
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'Inconsolata';
+  font-size: 18px;
+}
+
+#player_name_level {
+  position: absolute;
+  bottom: -38px;
+  left: 55px;
+  height: 30px;
+  width: 280px;
 }
 
 #player_health_bar {
   height: 50px;
   width: 250px;
   position: absolute;
-  top:60px;
+  top:65px;
   left:90px;
-  border: 3px solid black;
 }
+
+#player_health_points {
+  height: 10px;
+  width: 162px;
+  position: absolute;
+  top:82px;
+  right:75px;
+/*  border: 3px solid black;
+*/}
 
 #player_img {
   float: left;
@@ -161,7 +197,7 @@ body {
   display: none;
   border:1px solid white;
   letter-spacing: 2px;
-  padding:1px black;
+  padding:1px white;
 }
 
 #fight {

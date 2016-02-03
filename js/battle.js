@@ -4,8 +4,9 @@ console.log("POKEBALLS READY");
   //Jquery Vars
 
   //Avatar Properties
-    var Avatar = function(name, health, attack1, power1, attack2, power2, attack3, power3, attack4, power4) {
+    var Avatar = function(name, level, health, attack1, power1, attack2, power2, attack3, power3, attack4, power4) {
       this.name = name;
+      this.level = level;
       this.maxhealth = health;
       this.currenthealth = health;
       this.attackNames = [
@@ -19,40 +20,42 @@ console.log("POKEBALLS READY");
       }
     };
 
-    var enemyAvatar = function(name, health, attackName1, attackName2, oneLiner) {
-      this.name = name;
-      this.maxhealth = health;
-      this.currenthealth = health;
-      this.attackName1 = attackName1;
-      this.attackName2 = attackName2;
-      this.oneLiner = oneLiner;
-      this.battle = function(enemy) {
-        if ((Math.floor(Math.random() * (2 - 0)) + 0) === 0) {
-          console.log(this.name + " attacks with " + this.attackName1 + ".");
-          console.log(enemy.name + " was dealt " + enemy.currenthealth + " damage");
-          enemy.currenthealth -= enemy.currenthealth;
-          console.log(enemy.name + " has " + enemy.currenthealth + " health left.");
-        } else {
-          console.log(this.name + " attacks with " + this.attackName2 + ".");
-          if (enemy.currenthealth === 1) {
-            console.log("The attack failed!");
-          } else {
-           console.log(enemy.name + " was dealt " + (enemy.currenthealth -1) + " damage.");
-           enemy.currenthealth -= enemy.currenthealth -1;
-           console.log(enemy.name + " has " + enemy.currenthealth + " health left.");
-          }
-        }
-      }
-    }
+    var pikaFreakingChu = new Avatar("pika FRICKIN CHU", 46,  1000,
+                                     "Thunder", 100,
+                                     "ThunderBolt", 200,
+                                     "iron tail", 500,
+                                     "Electroball", 10000);
 
-    var pikaFreakingChu = new Avatar("pika FRICKIN CHU", 1000, "Thunder", 100, "ThunderBolt", 200, "iron tail", 500, "Electroball", 1000);
-
-    var dragonite = new Avatar("big fucking dragon", 10000, "Fus Roh Dah", 4000);
-
-    var onePunchPhil = new enemyAvatar("One Punch Phil", 100000, "one-punch", "mercy-punch", "huehue...weakling....");
+    var dragonite = new Avatar("Ob Jecht", 78,  10000,
+                               "Lost in Braces", 40000);
 
     var avatarList = [pikaFreakingChu, dragonite];
-    var activeAvatar = avatarList[0];        //needs to grab whoever.
+    var activeAvatar = avatarList[0];
+
+    var enemyAvatar = function(name, level, health, attack1, power1, attack2, power2, attack3, power3, attack4, power4, oneLiner) {
+      this.name = name;
+      this.level = level;
+      this.maxhealth = health;
+      this.currenthealth = health;
+      this.attackNames = [
+        attack1, attack2, attack3, attack4
+      ];
+      this.attackPowers = [
+        power1, power2, power3, power4
+      ];
+      this.oneLiner = oneLiner;
+      this.battle = function(power) {
+        activeAvatar.currenthealth -= power;
+      }
+    };
+
+    var onePunchPhil = new enemyAvatar("One Punch Phil",999, 100000,
+                                       "one-punch", activeAvatar.currenthealth,
+                                       "mercy-punch", activeAvatar.currenthealth-1,
+                                       "Jargon Jargon", 800,
+                                       "Simple Math", 300,
+                                       "huehue...weakling....");
+
     var activeEnemyAvatar = onePunchPhil;
     var usableAvatarList = avatarList;       //needs to grab whoever.
 
@@ -95,17 +98,24 @@ var $fightTextBox = $('#fight');
 var $itemTextBox = $('#item');
 var $famTextBox = $('#fam');
 var $boneOutTextBox = $('#bone_Out');
-var $battleText = $('battle_Text');
+var $battleText = $('#battle_Text');
 var $attack1Box = $('#attack1');
 var $attack2Box = $('#attack2');
 var $attack3Box = $('#attack3');
 var $attack4Box = $('#attack4');
-var $attackBoxArray = [$attack1Box, $attack2Box, $attack3Box, $attack4Box];
+var $playerattackBoxArray = [$attack1Box, $attack2Box, $attack3Box, $attack4Box];
+var $playerImg = $('#player_img');
+var $enemyImg = $('#enemy_img');
+var $enemyNameLevel = $('#enemy_name_level');
+var $playerNameLevel = $('#player_name_level');
+var $playerHealth = $('#player_health_points');
+var $enemyHealth = $('#enemy_health_points');
+
 
 //Render active Avatar Attacks in Context to attack boxes. NEEDS TO HAPPEN ON EVENT SWITCH/AVATAR DEATH.
 var renderActiveAttacks = function() {
   for(i=0;i<4;i++) {
-    $attackBoxArray[i].text(activeAvatar.attackNames[i])
+    $playerattackBoxArray[i].text(activeAvatar.attackNames[i])
                       .css({'color':'white', 'font-size': '35px',
                             'position': 'relative',
                             'display': 'none',
@@ -113,6 +123,22 @@ var renderActiveAttacks = function() {
                           });
   };
 };
+
+//Render active Avatar name and level
+var renderAvatarsNameLevel = function() {
+  $enemyNameLevel.text(activeEnemyAvatar.name + "         Lv." + activeEnemyAvatar.level)
+                 .css({'color':'black', 'font-size': '25px',
+                              'position': 'relative',
+                              'float':'left',
+                              'display':'none'
+                            });
+  $playerNameLevel.text(activeAvatar.name + "         Lv." + activeAvatar.level)
+                 .css({'color':'black', 'font-size': '25px',
+                              'position': 'relative',
+                              'float':'left',
+                              'display':'none'
+                            });
+}
 
 //Clicking Fight brings up attack box.
 $fightTextBox.on("click", function() {
@@ -128,16 +154,122 @@ $fightTextBox.on("click", function() {
   }, 1000);
 });
 
-//THE MASTER FUNCTION Clicking an Attack Box initiates attack fnc with specific move. Adds animate transition.
+
+
+//THE MASTER ATK FNC.
+/*var masterAttackFNC = function() {*/
+
+//ENEMY ATTACK FNC
+var enemyAttack = function() {
+  var holdyourballsfordestruction = Math.floor(Math.random() * (4 - 0)) + 0;
+  console.log(holdyourballsfordestruction);
+  setTimeout(function() {
+      $battleText.css({'color':'black', 'font-size': '35px',
+                              'position': 'relative',
+                              'float':'left',
+                              'display':'none'
+                            });
+      $battleText.text(activeEnemyAvatar.name + " used "+ activeEnemyAvatar.attackNames[holdyourballsfordestruction]);
+      $battleText.fadeIn(400);
+      console.log("1")
+    },3000);
+    setTimeout(function() {
+      $enemyImg.animate({right: "180"});
+      $enemyImg.animate({right: "140"});
+      console.log("2")
+    }, 3400);
+    setTimeout(function() {
+      $playerImg.animate({left: "60"});
+      $playerImg.animate({left: "110"});
+      console.log("3")
+    }, 4400);
+    activeEnemyAvatar.battle(activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
+    setTimeout(function() {
+      var $queryNewWidth = activeAvatar.currenthealth/(activeEnemyAvatar.currenthealth + activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
+      console.log($queryNewWidth);
+      $playerHealth.animate({width: $playerHealth.width()*$queryNewWidth});
+      console.log("4")
+    }, 5400);
+};
+
+
+//PLAYER FIGHT FNC.
 for (i=0;i<4;i++) {
-  $attackBoxArray[i].on("click", masterAttackFNC() {
+  $playerattackBoxArray[i].on("click", function() {
+    var $queryAttack = $(this).text();
+    var $queryPower = activeAvatar.attackPowers[activeAvatar.attackNames.indexOf($(this).text())];
+    console.log($queryPower);
+    $attack1Box.fadeOut(200);
+    $attack2Box.fadeOut(300);
+    $attack3Box.fadeOut(400);
+    $attack4Box.fadeOut(500);
+    setTimeout(function() {
+      $battleText.css({'color':'black', 'font-size': '35px',
+                              'position': 'relative',
+                              'float':'left',
+                              'display':'none'
+                            });
+      $battleText.text(activeAvatar.name + " used "+ $queryAttack);
+      $battleText.fadeIn(600);
+    },600);
+    setTimeout(function() {
+      $playerImg.animate({left: "60"});
+      $playerImg.animate({left: "110"});
+    }, 1000);
+    setTimeout(function() {
+      $enemyImg.animate({right: "180"});
+      $enemyImg.animate({right: "140"});
+    }, 2000);
     activeAvatar.battle(activeAvatar.attackPowers[activeAvatar.attackNames.indexOf($(this).text())]);
-    console.log(queryAttack);
+    setTimeout(function() {
+      var $queryNewWidth = activeEnemyAvatar.currenthealth/(activeEnemyAvatar.currenthealth + $queryPower);
+      console.log($queryNewWidth);
+      $enemyHealth.animate({width: $enemyHealth.width()*$queryNewWidth});
+    }, 2400);
+    /*setTimeout(function() {
+      $battleText.fadeOut(600);
+      $battleText.text()//placeholder for attack effectiveness);
+      $battleText.fadeIn(600);
+    }, 3400);*/
     console.log(activeAvatar);
     console.log(activeEnemyAvatar);
-    console.log(activeEnemyAvatar.currenthealth);
-  })
+    var holdyourballsfordestruction = Math.floor(Math.random() * (4 - 0)) + 0;
+    setTimeout(function() {
+      $battleText.css({'color':'black', 'font-size': '35px',
+                              'position': 'relative',
+                              'float':'left',
+                              'display':'none'
+                            });
+      $battleText.text(activeEnemyAvatar.name + " used "+ activeEnemyAvatar.attackNames[holdyourballsfordestruction]);
+      $battleText.fadeIn(400);
+      console.log("1")
+      console.log(holdyourballsfordestruction);
+    },3000);
+    setTimeout(function() {
+      $enemyImg.animate({right: "180"});
+      $enemyImg.animate({right: "140"});
+      console.log("2")
+    }, 3400);
+    setTimeout(function() {
+      $playerImg.animate({left: "60"});
+      $playerImg.animate({left: "110"});
+      console.log("3")
+    }, 4400);
+    activeEnemyAvatar.battle(activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
+    console.log(activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
+    setTimeout(function() {
+      var $queryNewPlayerWidth = activeAvatar.currenthealth/(activeAvatar.currenthealth + activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
+      console.log($queryNewPlayerWidth);
+      console.log(activeEnemyAvatar.currenthealth + activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
+      $playerHealth.animate({width: $playerHealth.width()*$queryNewPlayerWidth}, 1000);
+      console.log("4")
+      console.log(activeAvatar);
+      console.log(activeEnemyAvatar);
+    }, 5400);
+  });
 };
+
+
       //b. "declares attack in text"
 
       //c. "attack animation"
@@ -217,6 +349,7 @@ var somefunc = function() {
 
 var subRenderBattleScreen = function() {
   renderActiveAttacks();
+  renderAvatarsNameLevel();
   $worldMap.fadeOut(1000);
   setTimeout(function() {
     $battleBoard.toggle(800);
@@ -227,6 +360,12 @@ var subRenderBattleScreen = function() {
     left: "+=150", },1000);
     $( "#player_info" ).animate({
     right: "+=150", },1000);
+  }, 1100);
+  setTimeout(function() {
+    $enemyNameLevel.animate({
+    left: "toggle", },1000);
+    $playerNameLevel.animate({
+    right: "toggle", },1000);
   }, 1100);
   setTimeout(function() {
     $fightTextBox.fadeIn(1000);
