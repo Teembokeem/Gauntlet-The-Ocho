@@ -158,12 +158,12 @@ body {
 #player_img {
   float: left;
   display: inline-block;
-  height: 250px;
-  width: 220px;
-  bottom: 140px;
+  height: 130px;
+  width: 80px;
+  bottom: 190px;
   left: 110px;
   position: absolute;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 #attack_text_box {
@@ -271,6 +271,25 @@ body {
 #fam:hover {
   background: rgba(80,80,80,0.7);
 }
+
+#switchout {
+  width:860px;
+  height: 150px;
+  background: rgba(150,150,150,0.7);
+  display: none;
+  bottom: 150px;
+}
+
+.avatarlist {
+  display: inline-block;
+  height: 80px;
+  width: 50px;
+  padding-right: 10px;
+  top: 50px;
+  position: relative;
+  display: none;
+}
+
 #bone_Out {
   bottom:0;
   right:0;
