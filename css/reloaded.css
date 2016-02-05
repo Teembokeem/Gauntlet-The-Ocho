@@ -1,0 +1,279 @@
+body {
+  background: black;
+  z-index: 1;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+#darkloading {
+  background: url("../assets/epicwall.png");
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position: -30px -40px;
+  height: 1400px;
+  width: 1440px;
+  display:none;
+}
+
+#titleheader {
+  text-align: center;
+  height: 30%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  font-size: 170px;
+  font-family: 'Wire One', sans-serif;
+  display: none;
+  letter-spacing: 40px;
+  color:white;
+  background: rgba(0,0,0,0.7);
+  word-spacing: 20px;
+  font-weight: bold;
+}
+
+#loadinglines {
+  top: 40%;
+  position: absolute;
+  height: 40px;
+  width: 100%;
+  color: white;
+  font-family: 'Unica One', cursive;
+  font-size: 35px;
+  letter-spacing: 4px;
+  word-spacing: 5px;
+  z-index: 10;
+  text-align: center
+}
+
+#battlescreen {
+  background: rgba(0,0,0,0.7);
+  background-repeat: no-repeat;
+  background-position: -30px -40px;
+  height: 40%;
+  width: 100%;
+  top:30%;
+  position: fixed;
+  display: none;
+  text-align: center;
+}
+
+
+#Magnus {
+  background: url("../assets/av1small.png");
+    background-repeat: no-repeat;
+background-size: cover;
+}
+#Ghetsis {
+  background: url("../assets/av2small.png");
+    background-repeat: no-repeat;
+background-size: cover;
+}
+#Roxie {
+  background: url("../assets/av3small.png");
+    background-repeat: no-repeat;
+background-size: cover;
+}
+#Ultimecia {
+  background: url("../assets/av4small.png");
+    background-repeat: no-repeat;
+background-size: cover;
+}
+#Gilgamesh {
+  background: url("../assets/av5small.png");
+    background-repeat: no-repeat;
+background-size: cover;
+}
+#Charon {
+  background: url("../assets/av6small.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-left: 40px;
+}
+
+.character {
+  position: relative;
+  height: 180px;
+  width: 200px;
+  top:0;
+  display: inline-block;
+}
+
+.avatarRealized {
+  display: inline-block;
+  height: 130px;
+  width: 81.25px;
+  padding-right: 20px;
+  top: 40%;
+  position: fixed;
+  display: none;
+}
+
+.clashavatarpic1 {
+  height:440px;
+  width: 200px;
+  position: relative;
+  float: left;
+  display: none;
+}
+
+.clashavatarpic2 {
+  height:440px;
+  width: 200px;
+  position: relative;
+  float: left;
+  display: none;
+}
+
+.clashavatarpic3 {
+  height:440px;
+    width: 200px;
+  position: relative;
+  float: left;
+  display: none;
+}
+
+.clashavatarpic4 {
+  height:440px;
+    width: 200px;
+  position: relative;
+  float: left;
+  display: none;
+}
+
+.clashavatarpic5 {
+  height:440px;
+    width: 200px;
+  position: relative;
+  float: left;
+  display: none;
+}
+
+.clashavatarpic6 {
+  height:440px;
+    width: 200px;
+    position: relative;
+    float: left;
+  display: none;
+}
+
+.ezra {
+  position: relative;
+  float: right;
+  display: none;
+}
+
+.jim {
+  height:440px;
+  width: 400px;
+  position: relative;
+  float: right;
+  display: none;
+}
+
+.phil {
+  height:440px;
+  width: 400px;
+  position: relative;
+  float: right;
+  display: none;
+}
+
+#gacontainer {
+  height: 50%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 25%;
+}
+
+  #ga {
+    height: 18%;
+    width: 9%;
+    right: 120px;
+    position: fixed;
+    top: 40%;
+    left: 45.8%;
+/*    display: none;
+*/  }
+
+  #gaRing {
+    position: fixed;
+    height: 39%;
+    width: 20%;
+    left: 40%;
+    top: 30%;
+/*    display: none;
+*/  }
+
+
+    @-webkit-keyframes rotating {
+        from{
+            -webkit-transform: rotate(0deg);
+        }
+        to{
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+
+    .rotating {
+        -webkit-animation: rotating 20s linear infinite;
+    }
+
+
+  .loadingRightChars {
+    display: inline-block;
+    height: 130px;
+    width: 81.25px;
+    padding-right: 20px;
+    top: 40%;
+    position: fixed;
+    display: inline-block;
+    display: none;
+  }
+
+  .loadingLeftChars {
+    display: inline-block;
+    height: 130px;
+    width: 81.25px;
+    padding-right: 20px;
+    top: 40%;
+    position: fixed;
+    display: inline-block;
+    display: none;
+  }
+
+
+  #av1 {
+    left: 5%;
+  }
+  #av2 {
+    left: 17%;
+  }
+  #av3 {
+    left: 28%;
+  }
+  #av4 {
+    left: 65%;
+  }
+  #av5 {
+    left: 75%;
+  }
+  #av6 {
+    left: 87%;
+  }
+
+#battle_board {
+  height:80%;
+  width: 60%;
+  position: absolute;
+  top: 18%;
+  left: 20%;
+  display:none;
+  border: 4px solid black;
+  background: url("../assets/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0px -100px;
+  z-index: 2;
+}

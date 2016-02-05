@@ -1,0 +1,190 @@
+
+#battle_board {
+  height:60%;
+  width: 100%;
+  position: fixed;
+  top: 20%;
+  left: 0;
+  display:none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100px 0px 0px 0px;
+  z-index: 10;
+}
+
+#enemy_info {
+  height: 150px;
+  width: 400px;
+  position: relative;
+  display: inline-block;
+  top: 0;
+  right: 20%;
+  float: right;
+  background: url("../assets/enemyhpbox.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 18px;
+  font-family: 'Inconsolata';
+}
+
+#enemy_name_level {
+  position: absolute;
+  top: 45px;
+  left: 70px;
+  height: 30px;
+  width: 280px;
+}
+
+#enemy_health_bar {
+  height: 50px;
+  width: 250px;
+  position: absolute;
+  top:70px;
+  left:100px;
+}
+
+#enemy_health_points {
+  height: 10px;
+  width: 162px;
+  position: absolute;
+  top:87px;
+  left:173px;
+}
+
+#enemy_img {
+  float: right;
+  position: absolute;
+  display: inline-block;
+  height: 130px;
+  width: 80px;
+  bottom: 30px;
+  right: 250px;
+}
+
+#player_info {
+  height: 150px;
+  width: 400px;
+  position: relative;
+  display: inline-block;
+  top: 0;
+  left: 15%;
+  background: url("../assets/playerhpbox.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Inconsolata';
+  font-size: 18px;
+}
+
+#player_name_level {
+  position: absolute;
+  bottom: -38px;
+  left: 55px;
+  height: 30px;
+  width: 280px;
+}
+
+#player_health_bar {
+  height: 50px;
+  width: 250px;
+  position: absolute;
+  top:65px;
+  left:90px;
+}
+
+#player_health_points {
+  height: 10px;
+  width: 162px;
+  position: absolute;
+  top:82px;
+  right:75px;
+}
+
+#player_img {
+  float: left;
+  display: inline-block;
+  height: 130px;
+  width: 80px;
+  bottom: 30px;
+  left: 190px;
+  position: absolute;
+}
+
+#attack_text_box {
+  position: absolute;
+  display: block;
+  bottom:0;
+  width: 100%;
+  height: 130px;
+  border: 3px solid black;
+  background: white;
+  margin: 0 auto;
+  font-family: 'Inconsolata';
+  text-align: center;
+  word-spacing: 2px;
+}
+
+#menutext {
+  font-size: 35px;
+  color: white;
+  position: absolute;
+  top: 20px;
+  left: 110px;
+}
+
+.submenu {
+  position:absolute;
+  display:inline-block;
+  width: 50%;
+  height:50%;
+  background: rgba(150,150,150,0.7);
+  display: none;
+  border:1px solid white;
+  letter-spacing: 2px;
+  padding:1px white;
+}
+
+#fight {
+  left:0;
+}
+#fight:hover {
+  background: rgba(80,80,80,0.7);
+}
+
+#fam {
+  right:0;
+}
+#fam:hover {
+  background: rgba(80,80,80,0.7);
+}
+
+#switchout {
+  width:500px;
+  height: 200px;
+  background: rgba(150,150,150,0.7);
+  display: none;
+  bottom: 0;
+  z-index: 10;
+}
+
+.avatarlist {
+  display: inline-block;
+  height: 80px;
+  width: 50px;
+  padding-right: 10px;
+  top: 50px;
+  position: relative;
+  display: none;
+}
+
+#battle_Text {
+  position: absolute;
+  display: inline;
+  bottom:0;
+  width: 840px;
+  height: 130px;
+  padding: 10px;
+  font-size: 25px;
+  display: none;
+}
+
+
