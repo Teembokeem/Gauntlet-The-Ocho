@@ -363,9 +363,8 @@ var $playerNameLevel = $('#player_name_level');
 var $playerHealth = $('#player_health_points');
 var $enemyHealth = $('#enemy_health_points');
 var $avatarListArray = $('#switchout').children();
-var $avatarSwitchPanel = $('#switchout')
-
-
+var $attackTextBox = $('#attack_text_box');
+var $switchPanel = $('#switchout');
 
 //==============================================================================
 /*RENDERS
@@ -390,7 +389,7 @@ function subRenderBattleScreen() {
   }, 1100);
   setTimeout(function() {
     $fightTextBox.fadeIn(1000);
-    $famTextBox.fadeIn(2200);
+    $switchPanel.fadeIn(600);
   },2000);
 }
 
@@ -461,7 +460,6 @@ for(var i=0;i<activeAvatarsArray.length;i++) {
       $playerNameLevel.stop(600).fadeOut(600);
       $playerImg.stop(600).fadeOut(600);
       $('player_info').stop(600).fadeOut(600);
-      $avatarSwitchPanel.fadeOut(600);
       $avatarListArray.fadeOut(600);
       $playerHealth.fadeOut(600);
     }, 1100);
@@ -494,30 +492,10 @@ for(var i=0;i<activeAvatarsArray.length;i++) {
 };
 }
 
-//famTextBox Click.
-$famTextBox.on("click", function() {
-  $fightTextBox.fadeOut(200);
-  $famTextBox.fadeOut(400);
-  setTimeout(function() {
-    $battleText.css({'color':'black', 'font-size': '35px',
-                            'position': 'relative',
-                            'float':'left',
-                            'display':'none'
-                          });
-    $battleText.text(" Bae wants to throw it down. Hype.");
-    $battleText.fadeIn(400);
-  }, 2500);
-  setTimeout(function() {
-    $avatarSwitchPanel.fadeIn(600)
-    $avatarListArray.fadeIn(600)
-    theSwitch();
-  }, 3500);
-});
 
 //==============================================================================
 //==============================================================================
 
-//THE MASTER ATK FNC.
 
 //CHECK USABLE AVATAR
 function updateUsableAvatar() {                    //NEEDS TO RUN WITH COFFEE Avatar CENTER.
@@ -653,8 +631,6 @@ function switchOut() {
       $battleText.fadeIn(400);
     }, 2500);
     setTimeout(function() {
-      $avatarSwitchPanel.fadeIn(600)
-      $avatarListArray.fadeIn(600)
       theSwitch();
     }, 3500);
   }
@@ -678,7 +654,7 @@ function returnTopFight() {
 
 function battleLogic() {
     setTimeout(function() {
-      $battleText.css({'color':'black', 'font-size': '35px',
+      $battleText.css({'color':'white', 'font-size': '35px',
                               'position': 'relative',
                               'float':'left',
                               'display':'none'

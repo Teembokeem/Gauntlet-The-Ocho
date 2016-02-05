@@ -3,6 +3,7 @@ body {
   z-index: 1;
   overflow: hidden;
   margin: 0 auto;
+  text-align: center;
 }
 
 #darkloading {

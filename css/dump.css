@@ -18,7 +18,7 @@
   position: relative;
   display: inline-block;
   top: 0;
-  right: 20%;
+  right: 5%;
   float: right;
   background: url("../assets/enemyhpbox.png");
   background-repeat: no-repeat;
@@ -67,7 +67,7 @@
   position: relative;
   display: inline-block;
   top: 0;
-  left: 15%;
+  left: 5%;
   background: url("../assets/playerhpbox.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -111,16 +111,16 @@
 
 #attack_text_box {
   position: absolute;
-  display: block;
   bottom:0;
   width: 100%;
   height: 130px;
-  border: 3px solid black;
-  background: white;
   margin: 0 auto;
   font-family: 'Inconsolata';
+  background: rgba(0,0,0,0.5);
   text-align: center;
   word-spacing: 2px;
+  display: block;
+  color: white;
 }
 
 #menutext {
@@ -131,38 +131,30 @@
   left: 110px;
 }
 
-.submenu {
+
+
+#fight {
   position:absolute;
   display:inline-block;
-  width: 50%;
-  height:50%;
+  width: 100%;
+  height:100%;
   background: rgba(150,150,150,0.7);
   display: none;
   border:1px solid white;
   letter-spacing: 2px;
   padding:1px white;
-}
 
-#fight {
-  left:0;
 }
 #fight:hover {
   background: rgba(80,80,80,0.7);
 }
 
-#fam {
-  right:0;
-}
-#fam:hover {
-  background: rgba(80,80,80,0.7);
-}
-
 #switchout {
-  width:500px;
+  width: 250px;
   height: 200px;
-  background: rgba(150,150,150,0.7);
   display: none;
-  bottom: 0;
+  margin: 0 auto;
+  top: 0;
   z-index: 10;
 }
 
@@ -185,6 +177,7 @@
   padding: 10px;
   font-size: 25px;
   display: none;
+  color: white;
 }
 
 
