@@ -116,7 +116,7 @@ var Enemyavatar = function(name, level, health, attack1, power1, attack2, power2
   };
 };
 
-var ezra = new Enemyavatar("\"EZmode\" Ezra", 17, 170000,
+var ezra = new Enemyavatar("\"EZmode\" Ezra", 17, 80000,
                            "Mama Mia", 15000,
                            "Tragedy of Objecht", 20000,
                            $('.ezra'),
@@ -124,16 +124,16 @@ var ezra = new Enemyavatar("\"EZmode\" Ezra", 17, 170000,
                            ".... mama m--- WHAT?!..... mario is bae..",
                            $('#ezratrack'))
 
-var jim = new Enemyavatar("\"Good Guy\" Jim", 46, 325000,
-                          "That One Comic Joke Though", 30000,
-                          "That Joke Is Still Funny", 50000,
+var jim = new Enemyavatar("\"Good Guy\" Jim", 46, 120000,
+                          "That One Comic Joke Though", 20000,
+                          "That Joke Is Still Funny", 30000,
                           $('.jim'),
                           "./assets/jim.gif",
                           "Good Job!!",
                           $('#jimtrack'))
 
-var onePunchPhil = new Enemyavatar("Mastermind Phil", 999, 10000000,
-                                   "lol your code.", 100000,
+var onePunchPhil = new Enemyavatar("Mastermind Phil", 999, 160000,
+                                   "lol your code.", 40000,
                                    "TTT Master solution", 999999,
                                    $('.phil'),
                                    "./assets/phil.gif",
@@ -341,6 +341,15 @@ function render() {
   transitionCharSelect()
 }
 
+function renderOut() {
+  $darkloading.fadeOut(400);
+  $gaRing.fadeIn(800);
+  $ga.fadeIn(800);
+  $loadingRightChars.fadeIn(1000);
+  $loadingLeftChars.fadeIn(1000);
+  transitionCharSelect()
+}
+
 
 
 
@@ -427,8 +436,9 @@ function renderPlayerNameLevel() {
 //Render switchList
 function renderSwitchList() {
   for (i=0;i<3; i++) {
-    if ($avatarListArray.eq([i]).attr("src") ===  undefined) {
-      $avatarListArray.eq([i]).detach();
+    if ($('#switchout').children().eq([i]).attr("src") ===  undefined) {
+      $avatarListArray.eq([i]).pop()
+
     } else {
       $avatarListArray.eq([i]).attr("src",activeAvatarsArray[i].avatar);
     }
@@ -450,23 +460,17 @@ $fightTextBox.on("click", battleLogic);
 //Clicking on Avatar should start switchout.
 function theSwitch() {
 for(var i=0;i<activeAvatarsArray.length;i++) {
-  $('#switchout').children().on("click", function() {
-    activeAvatar = avatarList[$avatarListArray.eq().indexOf($(this).attr('id'))];
-    console.log(avatarList[$avatarListArray.indexOf($(this).attr('id'))]);
-    console.log($avatarListArray);
+    activeAvatar = activeAvatarsArray[0];
     renderPlayerImg();
     renderPlayerNameLevel();
     setTimeout(function() {
       $playerNameLevel.stop(600).fadeOut(600);
       $playerImg.stop(600).fadeOut(600);
-      $('player_info').stop(600).fadeOut(600);
-      $avatarListArray.fadeOut(600);
+      $('#player_info').stop(600).fadeOut(600);
       $playerHealth.fadeOut(600);
     }, 1100);
     setTimeout(function() {
-      $('#enemy_info').css({'opacity': '1'});
-      $('#player_info').css({'opacity': '1'});
-      $battleText.css({'color':'black', 'font-size': '35px',
+      $battleText.css({'color':'white', 'font-size': '35px',
                               'position': 'relative',
                               'float':'left',
                               'display':'none'
@@ -484,11 +488,7 @@ for(var i=0;i<activeAvatarsArray.length;i++) {
     }, 3800);
     setTimeout(function() {
       $fightTextBox.fadeIn(1000);
-      $famTextBox.fadeIn(2200);
-      updateUsableAvatar();
-      renderSwitchList();
     },4300);
-  });
 };
 }
 
@@ -498,9 +498,6 @@ for(var i=0;i<activeAvatarsArray.length;i++) {
 
 
 //CHECK USABLE AVATAR
-function updateUsableAvatar() {                    //NEEDS TO RUN WITH COFFEE Avatar CENTER.
-  activeAvatarsArray[0].detach();
-}
 
 //usabiity
 //player move win function
@@ -511,7 +508,7 @@ function winRewards() {
       console.log("enemy dead");
     }, 400);
     setTimeout(function() {
-       $battleText.css({'color':'black', 'font-size': '35px',
+       $battleText.css({'color':'white', 'font-size': '35px',
                               'position': 'relative',
                               'float':'left',
                               'display':'none'
@@ -520,7 +517,7 @@ function winRewards() {
       $battleText.fadeIn(400);
     }, 1000);
     setTimeout(function() {
-      $battleText.css({'color':'black', 'font-size': '35px',
+      $battleText.css({'color':'white', 'font-size': '35px',
                               'position': 'relative',
                               'float':'left',
                               'display':'none'
@@ -530,21 +527,22 @@ function winRewards() {
     }, 2500);
     setTimeout(function() {
       $battleText.fadeOut(400);
-      subRenderWorldScreen();
+      renderOut();
     }, 5500);
   }
 }
 
 //player out of usable avatars
 function losePunishments() {
-  if (activeAvatar.currenthealth === 0 && usableAvatarList.length < 1) {
+  console.log("losepunish");
+  if (activeAvatar.currenthealth === 0 && activeAvatarsArray.length < 1) {
     console.log("8");
     setTimeout(function() {
       $playerImg.fadeOut(600);
       console.log("You ran out of swag.");
     }, 400);
     setTimeout(function() {
-       $battleText.css({'color':'black', 'font-size': '35px',
+       $battleText.css({'color':'white', 'font-size': '35px',
                               'position': 'relative',
                               'float':'left',
                               'display':'none'
@@ -553,7 +551,7 @@ function losePunishments() {
       $battleText.fadeIn(400);
     }, 1000);
     setTimeout(function() {
-      $battleText.css({'color':'black', 'font-size': '35px',
+      $battleText.css({'color':'white', 'font-size': '35px',
                               'position': 'relative',
                               'float':'left',
                               'display':'none'
@@ -563,7 +561,7 @@ function losePunishments() {
     }, 2500);
     setTimeout(function() {
       $battleText.fadeOut(400);
-      subRenderWorldScreen();
+      renderOut();
     }, 5500);
   }
 }
@@ -573,79 +571,70 @@ function enemyReturnAttack() {
   if (activeEnemyAvatar.currenthealth !== 0) {
     var holdyourballsfordestruction = Math.floor(Math.random() * (2 - 0)) + 0;
     setTimeout(function() {
-      $battleText.css({'color':'black', 'font-size': '35px',
+      $battleText.css({'color':'white', 'font-size': '35px',
                               'position': 'relative',
                               'float':'left',
                               'display':'none'
                             });
       $battleText.text(activeEnemyAvatar.name + " used "+ activeEnemyAvatar.attackNames[holdyourballsfordestruction]);
       $battleText.fadeIn(400);
-      console.log("1");
-      console.log(holdyourballsfordestruction);
-    },600);
-    setTimeout(function() {
-      $enemyImg.animate({right: "100"});
-      $enemyImg.animate({right: "250"});
-      console.log("2");
-    }, 1000);
-    setTimeout(function() {
-      $playerImg.animate({left: "170"}, 50);
-      $playerImg.animate({left: "190"}, 50);
-      console.log("3");
-    }, 2000);
-    setTimeout(function() {
-      activeEnemyAvatar.battle(activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
-      console.log(activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
-      var $queryNewPlayerWidth = activeAvatar.currenthealth/(activeAvatar.currenthealth + activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
-      console.log($queryNewPlayerWidth);
-      console.log(activeAvatar.currenthealth + activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
-      $playerHealth.animate({width: $playerHealth.width()*$queryNewPlayerWidth}, 1000);
-      console.log("4");
-      console.log(activeAvatar);
-      console.log(activeEnemyAvatar);
       setTimeout(function() {
-        updateUsableAvatar();
+        $enemyImg.animate({right: "100"});
+        $enemyImg.animate({right: "250"});
         setTimeout(function() {
-          renderSwitchList();
-        },1000);
-      },1000)
-    }, 3000);
+          $playerImg.animate({left: "170"}, 50);
+          $playerImg.animate({left: "190"}, 50);
+          setTimeout(function() {
+            activeEnemyAvatar.battle(activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
+            var $queryNewPlayerWidth = activeAvatar.currenthealth/(activeAvatar.currenthealth + activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
+            $playerHealth.animate({width: $playerHealth.width()*$queryNewPlayerWidth}, 1000);
+              setTimeout(function() {
+                switchOut();
+                setTimeout(function() {
+                  losePunishments();
+                  setTimeout(function() {
+                    returnTopFight();
+                  }, 200);
+                }, 200);
+              },200);
+          },600)
+        },600);
+      }, 600);
+    },600);
   }
 }
 
 //switchout function after active avatar has died
 function switchOut() {
-  if (activeAvatar.currenthealth === 0 && usableAvatarList.length >= 1) {
-    console.log("7");
+  console.log(" switch out");
+  if (activeAvatar.currenthealth === 0 && activeAvatarsArray.length >= 1) {
     setTimeout(function() {
       $playerImg.fadeOut(1500);
       $battleText.fadeOut(1000);
+      setTimeout(function() {
+        $battleText.css({'color':'white', 'font-size': '35px',
+                                'position': 'relative',
+                                'float':'left',
+                                'display':'none'
+                              });
+        $battleText.text(activeAvatar.name + " got decked, but you still got Fam");
+        $battleText.fadeIn(400);
+        setTimeout(function() {
+          theSwitch();
+        }, 3500);
+      }, 2500);
     }, 400);
-    setTimeout(function() {
-      $battleText.css({'color':'black', 'font-size': '35px',
-                              'position': 'relative',
-                              'float':'left',
-                              'display':'none'
-                            });
-      $battleText.text(activeAvatar.name + " got decked, but you still got Fam");
-      $battleText.fadeIn(400);
-    }, 2500);
-    setTimeout(function() {
-      theSwitch();
-    }, 3500);
   }
 }
 
 
 //Successful volley, return to main battle options.
 function returnTopFight() {
+  console.log("returning");
   if (activeAvatar.currenthealth > 0) {
-    console.log("9");
     setTimeout(function() {
       $battleText.fadeOut(400);
       $fightTextBox.fadeIn(1000);
-      $famTextBox.fadeIn(2200);
-
     },2500);
   }
 }
@@ -682,12 +671,7 @@ function battleLogic() {
       winRewards();
       enemyReturnAttack();
     },3400);
-    setTimeout(function() {
-      switchOut();
-      losePunishments();
-      returnTopFight();
-    }, 7000);
-};
+  }
 
 
 
