@@ -459,36 +459,39 @@ $fightTextBox.on("click", battleLogic);
 
 //Clicking on Avatar should start switchout.
 function theSwitch() {
-for(var i=0;i<activeAvatarsArray.length;i++) {
-    activeAvatar = activeAvatarsArray[0];
-    renderPlayerImg();
-    renderPlayerNameLevel();
-    setTimeout(function() {
-      $playerNameLevel.stop(600).fadeOut(600);
-      $playerImg.stop(600).fadeOut(600);
-      $('#player_info').stop(600).fadeOut(600);
-      $playerHealth.fadeOut(600);
-    }, 1100);
-    setTimeout(function() {
-      $battleText.css({'color':'white', 'font-size': '35px',
-                              'position': 'relative',
-                              'float':'left',
-                              'display':'none'
-                            });
-      $battleText.text(activeAvatar.name + " takes the lead. ");
-      $battleText.fadeIn(600);
-    },2100);
-    setTimeout(function() {
-      $("#player_info").fadeIn(600);
-      $playerNameLevel.animate({right: "toggle", },1000);
-      $playerImg.toggle(600);
-      $playerHealth.fadeIn(600);
-      $playerHealth.animate({width: "162"}, 600);
-      $battleText.fadeOut(600);
-    }, 3800);
-    setTimeout(function() {
-      $fightTextBox.fadeIn(1000);
-    },4300);
+  if (activeAvatarsArray[0].currenthealth === 0) {
+    activeAvatar = activeAvatarsArray[1];
+  } else (activeAvatarsArray[1].currenthealth === 0) {
+    activeAvatar = activeAvatarsArray[2];
+  }
+  renderPlayerImg();
+  renderPlayerNameLevel();
+  setTimeout(function() {
+    $playerNameLevel.stop(600).fadeOut(600);
+    $playerImg.stop(600).fadeOut(600);
+    $('#player_info').stop(600).fadeOut(600);
+    $playerHealth.fadeOut(600);
+  }, 1100);
+  setTimeout(function() {
+    $battleText.css({'color':'white', 'font-size': '35px',
+                            'position': 'relative',
+                            'float':'left',
+                            'display':'none'
+                          });
+    $battleText.text(activeAvatar.name + " takes the lead. ");
+    $battleText.fadeIn(600);
+  },2100);
+  setTimeout(function() {
+    $("#player_info").fadeIn(600);
+    $playerNameLevel.animate({right: "toggle", },1000);
+    $playerImg.toggle(600);
+    $playerHealth.fadeIn(600);
+    $playerHealth.animate({width: "162"}, 600);
+    $battleText.fadeOut(600);
+  }, 3800);
+  setTimeout(function() {
+    $fightTextBox.fadeIn(1000);
+  },4300);
 };
 }
 
