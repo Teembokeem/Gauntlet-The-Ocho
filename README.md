@@ -1,5 +1,7 @@
 #GAUNTLET THE OCHO
 ##Turn-based RPG
+####Trello Link: https://trello.com/b/h6FHo71B/ga-rpg
+--
 Gauntlet The Ocho is an interactive game that pits you, a GA student, against your beloved Cohort 8 instructors; "EZmode" Ezra, "Good Guy" Jim, and "MasterMind" Phil.
 
 ###Main Screen
@@ -27,7 +29,19 @@ Cool! Small animations.
 ![alt text] (https://i.imgur.com/LhloUiA.png)
 yea... a bit simple eh?
 
+###Game Technologies
 --
-Keep playing and maybe you'l encounter some of the harder bosses...
+HTML5, CSS3, JS, JQUERY
+
+###Game Design
+--
+This game is inspired by Pokemon, GA, minimalism, and Final Fantasy, in no specific order..
+
+###GetStarted
+--
+Keep playing and maybe you'l encounter some of the harder bosses...get started!!! 
+
+[Click here!](http://teembokeem.github.io/project_pokemon/)
+
 
 

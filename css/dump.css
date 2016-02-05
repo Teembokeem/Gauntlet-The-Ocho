@@ -67,7 +67,7 @@
   position: relative;
   display: inline-block;
   top: 0;
-  left: 5%;
+  left: -20%;
   background: url("../assets/playerhpbox.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -123,13 +123,7 @@
   color: white;
 }
 
-#menutext {
-  font-size: 35px;
-  color: white;
-  position: absolute;
-  top: 20px;
-  left: 110px;
-}
+
 
 
 
@@ -143,10 +137,17 @@
   border:1px solid white;
   letter-spacing: 2px;
   padding:1px white;
-
 }
 #fight:hover {
   background: rgba(80,80,80,0.7);
+}
+
+#menutext {
+  font-size: 35px;
+  color: white;
+  position: center;
+  top: 20px;
+  left: 110px;
 }
 
 #switchout {
@@ -169,10 +170,10 @@
 }
 
 #battle_Text {
-  position: absolute;
+  position: center;
   display: inline;
   bottom:0;
-  width: 840px;
+  width: 100%;
   height: 130px;
   padding: 10px;
   font-size: 25px;
