@@ -461,7 +461,7 @@ $fightTextBox.on("click", battleLogic);
 function theSwitch() {
   if (activeAvatarsArray[0].currenthealth === 0) {
     activeAvatar = activeAvatarsArray[1];
-  } else (activeAvatarsArray[1].currenthealth === 0) {
+  } else if (activeAvatarsArray[1].currenthealth === 0) {
     activeAvatar = activeAvatarsArray[2];
   }
   renderPlayerImg();
@@ -493,7 +493,7 @@ function theSwitch() {
     $fightTextBox.fadeIn(1000);
   },4300);
 };
-}
+
 
 
 //==============================================================================
