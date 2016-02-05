@@ -1,5 +1,12 @@
 console.log("POKEBALLS READY");
 
+
+
+
+
+
+
+
 //GLOBAL VARIABLES
   //Jquery Vars
 
@@ -64,7 +71,7 @@ console.log("POKEBALLS READY");
       };
   };
 
-    var onePunchPhil = new enemyAvatar("One Punch Phil",999, 100000,
+    var onePunchPhil = new enemyAvatar("One Punch Phil",999, 10000,
                                        "one-punch", 500,
                                        "mercy-punch", 500,//activeAvatar.currenthealth-1,
                                        "Jargon Jargon", 500,

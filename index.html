@@ -8,19 +8,44 @@
   <link rel="stylesheet" href="./css/loading.css">
   <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Unica+One' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
   <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
 </head>
 <body>
-  <div id="world_map">
-    <button onclick="subRenderBattleScreen()"></button>
-    <canvas id="canvas"></canvas>
-    <div class="lists" id="menu_bar">
-      <div class="lists" id="pokemon_list">
-        <div class="activeAvatar"></div>
-        <div class="secondAvatar"></div>
-      </div>
+    <audio id="song1" src="./assets/datsong.mp3"></audio>
+    <audio id="song2" src="./assets/charselect.mp3"></audio>
+    <div id="darkloading"></div>
+    <div id="battlescreen">
+
+      <img class="character" src="./assets/av2.gif">
+      <!-- <div id="charactername"></div> -->
+      <img class="character" src="./assets/av3.gif">
+      <!-- <div id="charactername"></div> -->
+      <img class="character" src="./assets/av4.gif">
+      <!-- <div id="charactername"></div> -->
+      <img  class="character" src="./assets/av5.gif">
+      <!-- <div id="charactername"></div> -->
+      <img  class="character" src="./assets/av6.gif">
+      <!-- <div id="charactername"></div> -->
+      <img  class="character" src="./assets/av7.gif">
+      <!-- <div id="charactername"></div> -->
     </div>
+    <div id="loadinglines"></div>
+    <div id="titleheader"></div>
+    <div id="gacontainer">
+      <img class="ga" id="ga" src="./assets/GA.png">
+      <img class="rotating rotating2 ga" id="gaRing" src="./assets/Ring.png">
+      <img class="loadingLeftChars" id="av1" src="./assets/av2.png">
+      <img class="loadingLeftChars" id="av2" src="./assets/av3.png">
+      <img class="loadingLeftChars" id="av3" src="./assets/av4.png">
+      <img  class="loadingRightChars" id="av4" src="./assets/av5.png">
+      <img  class="loadingRightChars" id="av5" src="./assets/av6.png">
+      <img  class="loadingRightChars" id="av6" src="./assets/av7.png">
   </div>
+<!--  <button onclick="subRenderBattleScreen()"></button>
+ -->
   <div id="battle_board">
       <div id="attack_text_box">
         <div class="submenu" id="fight"><span id="menutext">FIGHT</span></div>
@@ -58,8 +83,7 @@
         <img id="player_health_points" src="./assets/hp.png">
       </div>
   </div>
-  <div id="loading_Screen"></div>
     <script src="./js/battle.js"></script>
-    <script src="./js/map.js"></script>
+    <script src="./js/loading.js"></script>
 </body>
 </html>
