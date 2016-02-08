@@ -456,14 +456,15 @@ $fightTextBox.on("click", battleLogic);
 
 //Clicking on Attack move in Attack box starts battle logic.
 
-
-//Clicking on Avatar should start switchout.
-function theSwitch() {
+function update() {
   if (activeAvatarsArray[0].currenthealth === 0) {
     activeAvatar = activeAvatarsArray[1];
   } else if (activeAvatarsArray[1].currenthealth === 0) {
     activeAvatar = activeAvatarsArray[2];
   }
+}
+//Clicking on Avatar should start switchout.
+function theSwitch() {
   renderPlayerImg();
   renderPlayerNameLevel();
   setTimeout(function() {
@@ -592,9 +593,10 @@ function enemyReturnAttack() {
             var $queryNewPlayerWidth = activeAvatar.currenthealth/(activeAvatar.currenthealth + activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
             $playerHealth.animate({width: $playerHealth.width()*$queryNewPlayerWidth}, 1000);
               setTimeout(function() {
-                switchOut();
+                update();
                 setTimeout(function() {
                   losePunishments();
+                  switchOut();
                   setTimeout(function() {
                     returnTopFight();
                   }, 200);
