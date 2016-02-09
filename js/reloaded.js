@@ -117,23 +117,23 @@ var Enemyavatar = function(name, level, health, attack1, power1, attack2, power2
 };
 
 var ezra = new Enemyavatar("\"EZmode\" Ezra", 17, 80000,
-                           "Mama Mia", 15000,
-                           "Tragedy of Objecht", 20000,
+                           "Mama Mia", 80000,
+                           "Tragedy of Objecht", 80000,
                            $('.ezra'),
                            "./assets/ezra.gif",
                            ".... mama m--- WHAT?!..... mario is bae..",
                            $('#ezratrack'))
 
 var jim = new Enemyavatar("\"Good Guy\" Jim", 46, 120000,
-                          "That One Comic Joke Though", 20000,
-                          "That Joke Is Still Funny", 30000,
+                          "That One Comic Joke Though", 80000,
+                          "That Joke Is Still Funny", 80000,
                           $('.jim'),
                           "./assets/jim.gif",
                           "Good Job!!",
                           $('#jimtrack'))
 
 var onePunchPhil = new Enemyavatar("Mastermind Phil", 999, 160000,
-                                   "lol your code.", 40000,
+                                   "lol your code.", 80000,
                                    "TTT Master solution", 999999,
                                    $('.phil'),
                                    "./assets/phil.gif",
@@ -338,7 +338,7 @@ function render() {
   $ga.fadeIn(800);
   $loadingRightChars.fadeIn(1000);
   $loadingLeftChars.fadeIn(1000);
-  transitionCharSelect()
+  transitionCharSelect();
 }
 
 function renderOut() {
@@ -457,16 +457,16 @@ $fightTextBox.on("click", battleLogic);
 //Clicking on Attack move in Attack box starts battle logic.
 
 function update() {
-  if (activeAvatarsArray[0].currenthealth === 0) {
-    activeAvatar = activeAvatarsArray[1];
-  } else if (activeAvatarsArray[1].currenthealth === 0) {
-    activeAvatar = activeAvatarsArray[2];
-  }
+  activeAvatarsArray.shift();
+  console.log('spliced');
+  activeAvatar= activeAvatarsArray[0];
+  console.log('switched');
+  renderPlayerImg();
+  renderPlayerNameLevel();
 }
 //Clicking on Avatar should start switchout.
 function theSwitch() {
-  renderPlayerImg();
-  renderPlayerNameLevel();
+  update();
   setTimeout(function() {
     $playerNameLevel.stop(600).fadeOut(600);
     $playerImg.stop(600).fadeOut(600);
@@ -539,7 +539,6 @@ function winRewards() {
 //player out of usable avatars
 function losePunishments() {
   console.log("losepunish");
-  if (activeAvatar.currenthealth === 0 && activeAvatarsArray.length < 1) {
     console.log("8");
     setTimeout(function() {
       $playerImg.fadeOut(600);
@@ -565,9 +564,8 @@ function losePunishments() {
     }, 2500);
     setTimeout(function() {
       $battleText.fadeOut(400);
-      renderOut();
+      render();
     }, 5500);
-  }
 }
 
 //enemy return attack fnc
@@ -592,17 +590,16 @@ function enemyReturnAttack() {
             activeEnemyAvatar.battle(activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
             var $queryNewPlayerWidth = activeAvatar.currenthealth/(activeAvatar.currenthealth + activeEnemyAvatar.attackPowers[holdyourballsfordestruction]);
             $playerHealth.animate({width: $playerHealth.width()*$queryNewPlayerWidth}, 1000);
-              setTimeout(function() {
-                update();
                 setTimeout(function() {
-                  losePunishments();
-                  switchOut();
-                  setTimeout(function() {
+                  if (activeAvatar.currenthealth === 0 && activeAvatarsArray.length < 1) {
+                    losePunishments();
+                  } else if (activeAvatar.currenthealth === 0 && activeAvatarsArray.length >= 1) {
+                    switchOut();
+                  } else {
                     returnTopFight();
-                  }, 200);
+                  }
                 }, 200);
               },200);
-          },600)
         },600);
       }, 600);
     },600);
@@ -612,8 +609,7 @@ function enemyReturnAttack() {
 //switchout function after active avatar has died
 function switchOut() {
   console.log(" switch out");
-  if (activeAvatar.currenthealth === 0 && activeAvatarsArray.length >= 1) {
-    setTimeout(function() {
+      setTimeout(function() {
       $playerImg.fadeOut(1500);
       $battleText.fadeOut(1000);
       setTimeout(function() {
@@ -629,7 +625,6 @@ function switchOut() {
         }, 3500);
       }, 2500);
     }, 400);
-  }
 }
 
 
