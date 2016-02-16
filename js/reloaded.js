@@ -352,13 +352,6 @@ function renderOut() {
 
 
 
-
-
-
-
-
-
-
 var $battleBoard = $('#battle_board');
 var $fightTextBox = $('#fight');
 var $famTextBox = $('#fam');
@@ -648,10 +641,10 @@ function battleLogic() {
                               'float':'left',
                               'display':'none'
                             });
-      $fightTextBox.fadeOut(600);
-      $famTextBox.fadeOut(600);
       $battleText.text(activeAvatar.name + " used "+ activeAvatar.attackName);
       $battleText.fadeIn(600);
+      $fightTextBox.fadeOut(600);
+      $famTextBox.fadeOut(600);
     },600);
     setTimeout(function() {
       $playerImg.animate({left: "300"});
